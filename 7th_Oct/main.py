@@ -28,3 +28,27 @@ def get_student(student_id: int):
         if s["id"] == student_id:
             return s
     raise HTTPException(status_code= 404, detail= "Student not found")
+
+# POST Request
+@app.post("/students", status_code= 201)
+def add_student(student: Student):
+    students.append(student.dict())
+    return {"message": "Student added successfully", "student" : student}
+
+# PUT Request
+@app.put("/students/{student_id}")
+def update_student(student_id: int, updated_student: Student):
+    for i, s in enumerate(students):
+        if s["id"] == student_id:
+            students[i] = updated_student.dict()
+            return {"message": "Student Updated Successfully", "student": updated_student}
+    raise HTTPException (status_code= 404, detail= "Student not found")
+
+# DELETE Request
+@app.delete("/students/{student_id}")
+def delete_student(student_id: int):
+    for i, s in enumerate(students):
+        if s["id"] == student_id:
+            students.pop(i)
+            return {"message": "Student Deleted Successfully"}
+    raise  HTTPException (status_code = 404, detail= "Student not found")
