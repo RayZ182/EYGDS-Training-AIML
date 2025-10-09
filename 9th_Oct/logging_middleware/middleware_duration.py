@@ -20,7 +20,6 @@ async def get_duration_from_request(request: Request, call_next):
     start = time.time()
     response = await call_next(request)
 
-    await asyncio.sleep(5)
     duration = time.time() - start
     logging.info(f"Duration: {duration:.4f} seconds")
     response.headers["Req_Duration"] = str(duration)
@@ -30,6 +29,7 @@ async def get_duration_from_request(request: Request, call_next):
 students = [{"id": 1, "name": "Rahul"}, {"id": 2, "name": "Neha"}]
 
 @app.get("/students")
-def get_students():
+async def get_students():
     logging.info("Fetching all students from database...")
+    await asyncio.sleep(5)
     return students
