@@ -1,0 +1,14 @@
+2025-10-09 11:35:33,792 | INFO | Visit count : 1
+2025-10-09 11:35:33,795 | INFO | GET /visits | Status: 200 | Duration: 0.003s
+2025-10-09 11:35:36,567 | INFO | Visit count : 2
+2025-10-09 11:35:36,568 | INFO | GET /visits | Status: 200 | Duration: 0.001s
+2025-10-09 11:35:47,939 | INFO | Visit count : 3
+2025-10-09 11:35:47,940 | INFO | Fetching all students from database...
+2025-10-09 11:35:47,941 | INFO | GET /students | Status: 200 | Duration: 0.002s
+2025-10-09 11:35:49,601 | INFO | Visit count : 4
+2025-10-09 11:35:49,602 | INFO | Fetching all students from database...
+2025-10-09 11:35:49,602 | INFO | GET /students | Status: 200 | Duration: 0.001s
+2025-10-09 11:36:02,534 | INFO | Visit count : 5
+2025-10-09 11:36:02,536 | INFO | GET /visits | Status: 200 | Duration: 0.002s
+2025-10-09 11:36:04,872 | INFO | Visit count : 6
+2025-10-09 11:36:04,873 | INFO | GET /visits | Status: 200 | Duration: 0.001s
