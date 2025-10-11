@@ -1,0 +1,15 @@
+# This Repo contains classwork and tasks for the EY-GDS AIML Bootcamp
+### Topics Covered in each day are:
+- **22 Sept**  : Basic Python Introduction, Numpy, Pandas, Tuple, Dictionaries, List, Set.
+- **23 Sept**  : Git Commands, Data Visualization, SaaS vs PaaS vs IaaS
+- **24 Sept**  : Machine Learning Introduction & Algorithms, Evaluation Metrics, DL Introduction 
+- **25 Sept**  : ML Models, MLflow Intro
+- **26 Sept**  : SQL & NoSQL, MySQL Intro, SQL Quering, CRUD op
+- **29 Sept**  : SQL joins (Left, Right, Inner, Union), Stored Procedures
+- **30 Sept**  : Normalization and Stored Procedure Exercises
+- **3 Oct**    : MongoDB Tutorial, NoSQL, CRUD
+- **6 Oct**    : R&W in JSON, YAML, INI files, Regular Classes vs Pydantic Classes, Logging, Exception Handling in Python.
+- **7 Oct**    : FastAPI Intro, How to run API files, Creating API requests, POSTMAN Tutorial.
+- **8 Oct**    : Unit Testing for API Requests, Exception Handling
+- **9 Oct**    : Sync & Async methods for API files, Middleware
+- **10 Oct**   : RabbitMQ Installation & Intro, Load Balancing, Queueing
