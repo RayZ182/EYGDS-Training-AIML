@@ -13,3 +13,4 @@
 - **8 Oct**    : Unit Testing for API Requests, Exception Handling
 - **9 Oct**    : Sync & Async methods for API files, Middleware
 - **10 Oct**   : RabbitMQ Installation & Intro, Load Balancing, Queueing
+- **13 Oct**   : Data Pipeline, ETL Process, Data Preprocessing.
