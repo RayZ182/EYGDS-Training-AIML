@@ -4,7 +4,7 @@
 - **23 Sept**  : Git Commands, Data Visualization, SaaS vs PaaS vs IaaS
 - **24 Sept**  : Machine Learning Introduction & Algorithms, Evaluation Metrics, DL Introduction 
 - **25 Sept**  : ML Models, MLflow Intro
-- **26 Sept**  : SQL & NoSQL, MySQL Intro, SQL Quering, CRUD op
+- **26 Sept**  : SQL & NoSQL, MySQL Intro, SQL Querying, CRUD op
 - **29 Sept**  : SQL joins (Left, Right, Inner, Union), Stored Procedures
 - **30 Sept**  : Normalization and Stored Procedure Exercises
 - **3 Oct**    : MongoDB Tutorial, NoSQL, CRUD
