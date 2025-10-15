@@ -14,3 +14,4 @@
 - **9 Oct**    : Sync & Async methods for API files, Middleware
 - **10 Oct**   : RabbitMQ Installation & Intro, Load Balancing, Queueing
 - **13 Oct**   : Data Pipeline, ETL Process, Data Preprocessing.
+- **14 Oct**   : Message Queueing using Threading, Azure Queue vs Service Bus
