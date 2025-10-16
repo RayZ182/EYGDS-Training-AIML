@@ -15,3 +15,5 @@
 - **10 Oct**   : RabbitMQ Installation & Intro, Load Balancing, Queueing
 - **13 Oct**   : Data Pipeline, ETL Process, Data Preprocessing.
 - **14 Oct**   : Message Queueing using Threading, Azure Queue vs Service Bus
+- **15 Oct**   : Gen AI basic Intro, Types of Gen AI, Agentic AI Intro
+- **16 Oct**   : 
