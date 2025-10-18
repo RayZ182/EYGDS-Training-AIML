@@ -1,0 +1,61 @@
+2025-10-18 11:45:43,346 - INFO - Pika version 1.3.2 connecting to ('::1', 5672, 0, 0)
+2025-10-18 11:45:43,347 - INFO - Socket connected: <socket.socket fd=564, family=23, type=1, proto=6, laddr=('::1', 54934, 0, 0), raddr=('::1', 5672, 0, 0)>
+2025-10-18 11:45:43,347 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000001C6FD366490>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000001C6FD366490> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>).
+2025-10-18 11:45:43,351 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000001C6FD366490> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2025-10-18 11:45:43,352 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000001C6FD366490> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2025-10-18 11:45:43,352 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000001C6FD366490> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2025-10-18 11:45:43,352 - INFO - Created channel=1
+2025-10-18 11:45:51,786 - INFO - Pika version 1.3.2 connecting to ('::1', 5672, 0, 0)
+2025-10-18 11:45:51,786 - INFO - Socket connected: <socket.socket fd=564, family=23, type=1, proto=6, laddr=('::1', 54938, 0, 0), raddr=('::1', 5672, 0, 0)>
+2025-10-18 11:45:51,787 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000001F3BFC1F6D0>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000001F3BFC1F6D0> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>).
+2025-10-18 11:45:51,791 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000001F3BFC1F6D0> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2025-10-18 11:45:51,791 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000001F3BFC1F6D0> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2025-10-18 11:45:51,791 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000001F3BFC1F6D0> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2025-10-18 11:45:51,792 - INFO - Created channel=1
+2025-10-18 11:45:51,793 - INFO - Sent visit V007
+2025-10-18 11:45:51,794 - INFO - Closing connection (200): Normal shutdown
+2025-10-18 11:45:51,794 - INFO - Closing channel (200): 'Normal shutdown' on <Channel number=1 OPEN conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000001F3BFC1F6D0> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>>
+2025-10-18 11:45:51,794 - INFO - Received <Channel.CloseOk> on <Channel number=1 CLOSING conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x000001F3BFC1F6D0> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>>
+2025-10-18 11:45:51,795 - INFO - Closing connection (200): 'Normal shutdown'
+2025-10-18 11:45:51,795 - INFO - Task V007 is added.
+2025-10-18 11:45:51,795 - INFO - ETL started.
+2025-10-18 11:45:51,795 - INFO - Aborting transport connection: state=1; <socket.socket fd=564, family=23, type=1, proto=6, laddr=('::1', 54938, 0, 0), raddr=('::1', 5672, 0, 0)>
+2025-10-18 11:45:51,796 - INFO - _AsyncTransportBase._initate_abort(): Initiating abrupt asynchronous transport shutdown: state=1; error=None; <socket.socket fd=564, family=23, type=1, proto=6, laddr=('::1', 54938, 0, 0), raddr=('::1', 5672, 0, 0)>
+2025-10-18 11:45:51,796 - INFO - Deactivating transport: state=1; <socket.socket fd=564, family=23, type=1, proto=6, laddr=('::1', 54938, 0, 0), raddr=('::1', 5672, 0, 0)>
+2025-10-18 11:45:51,796 - INFO - AMQP stack terminated, failed to connect, or aborted: opened=True, error-arg=None; pending-error=ConnectionClosedByClient: (200) 'Normal shutdown'
+2025-10-18 11:45:51,796 - INFO - Stack terminated due to ConnectionClosedByClient: (200) 'Normal shutdown'
+2025-10-18 11:45:51,796 - INFO - Closing transport socket and unlinking: state=3; <socket.socket fd=564, family=23, type=1, proto=6, laddr=('::1', 54938, 0, 0), raddr=('::1', 5672, 0, 0)>
+2025-10-18 11:45:51,796 - INFO - User-initiated close: result=BlockingConnection__OnClosedArgs(connection=<SelectConnection CLOSED transport=None params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>, error=ConnectionClosedByClient: (200) 'Normal shutdown')
+2025-10-18 11:45:52,766 - root - INFO - Patients file processed successfully.
+2025-10-18 11:45:52,768 - root - INFO - Doctors file processed successfully.
+2025-10-18 11:45:52,769 - root - INFO - Visit file processed successfully.
+2025-10-18 11:45:52,946 - root - INFO - Processed visits saved to process_visits.csv
+2025-10-18 11:45:53,064 - INFO - ETL process Completed
+2025-10-18 11:45:53,064 - INFO - ETL Process Finished in 1.2699685096740723 seconds.
+2025-10-18 11:49:18,485 - INFO - Pika version 1.3.2 connecting to ('::1', 5672, 0, 0)
+2025-10-18 11:49:18,485 - INFO - Socket connected: <socket.socket fd=564, family=23, type=1, proto=6, laddr=('::1', 54984, 0, 0), raddr=('::1', 5672, 0, 0)>
+2025-10-18 11:49:18,486 - INFO - Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x00000216E7E1F950>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x00000216E7E1F950> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>).
+2025-10-18 11:49:18,493 - INFO - AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x00000216E7E1F950> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2025-10-18 11:49:18,493 - INFO - AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x00000216E7E1F950> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2025-10-18 11:49:18,493 - INFO - Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x00000216E7E1F950> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>
+2025-10-18 11:49:18,493 - INFO - Created channel=1
+2025-10-18 11:49:18,495 - INFO - Sent visit V008
+2025-10-18 11:49:18,496 - INFO - Closing connection (200): Normal shutdown
+2025-10-18 11:49:18,496 - INFO - Closing channel (200): 'Normal shutdown' on <Channel number=1 OPEN conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x00000216E7E1F950> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>>
+2025-10-18 11:49:18,497 - INFO - Received <Channel.CloseOk> on <Channel number=1 CLOSING conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x00000216E7E1F950> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>>
+2025-10-18 11:49:18,497 - INFO - Closing connection (200): 'Normal shutdown'
+2025-10-18 11:49:18,498 - INFO - Aborting transport connection: state=1; <socket.socket fd=564, family=23, type=1, proto=6, laddr=('::1', 54984, 0, 0), raddr=('::1', 5672, 0, 0)>
+2025-10-18 11:49:18,498 - INFO - _AsyncTransportBase._initate_abort(): Initiating abrupt asynchronous transport shutdown: state=1; error=None; <socket.socket fd=564, family=23, type=1, proto=6, laddr=('::1', 54984, 0, 0), raddr=('::1', 5672, 0, 0)>
+2025-10-18 11:49:18,498 - INFO - Deactivating transport: state=1; <socket.socket fd=564, family=23, type=1, proto=6, laddr=('::1', 54984, 0, 0), raddr=('::1', 5672, 0, 0)>
+2025-10-18 11:49:18,498 - INFO - AMQP stack terminated, failed to connect, or aborted: opened=True, error-arg=None; pending-error=ConnectionClosedByClient: (200) 'Normal shutdown'
+2025-10-18 11:49:18,498 - INFO - Stack terminated due to ConnectionClosedByClient: (200) 'Normal shutdown'
+2025-10-18 11:49:18,498 - INFO - Closing transport socket and unlinking: state=3; <socket.socket fd=564, family=23, type=1, proto=6, laddr=('::1', 54984, 0, 0), raddr=('::1', 5672, 0, 0)>
+2025-10-18 11:49:18,499 - INFO - User-initiated close: result=BlockingConnection__OnClosedArgs(connection=<SelectConnection CLOSED transport=None params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>, error=ConnectionClosedByClient: (200) 'Normal shutdown')
+2025-10-18 11:49:18,524 - INFO - Task V008 is added.
+2025-10-18 11:49:18,524 - INFO - ETL started.
+2025-10-18 11:49:19,464 - root - INFO - Patients file processed successfully.
+2025-10-18 11:49:19,466 - root - INFO - Doctors file processed successfully.
+2025-10-18 11:49:19,467 - root - INFO - Visit file processed successfully.
+2025-10-18 11:49:19,483 - root - INFO - Processed visits saved to process_visits.csv
+2025-10-18 11:49:19,571 - INFO - ETL process Completed
+2025-10-18 11:49:19,571 - INFO - ETL Process Finished in 1.0747296810150146 seconds.
