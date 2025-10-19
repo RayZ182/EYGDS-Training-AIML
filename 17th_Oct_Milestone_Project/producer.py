@@ -17,11 +17,11 @@ try:
     channel.queue_declare(queue="visit_tasks")
 
     task = {
-        "VisitID": "V008",
+        "VisitID": "V009",
         "PatientID": "P003",
         "DoctorID": "D101",
-        "Date": "2025-10-09",
-        "Cost": 1000
+        "Date": "2025-10-10",
+        "Cost": 500
     }
 
     # Publish Message to queue

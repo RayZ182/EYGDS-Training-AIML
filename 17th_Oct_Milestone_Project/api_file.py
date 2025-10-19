@@ -7,7 +7,7 @@ import logging
 logging.basicConfig(
     level = logging.DEBUG,
     filename = 'app.log',
-    format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    format = '%(asctime)s - %(levelname)s - %(message)s'
 )
 
 app = FastAPI()
@@ -97,7 +97,7 @@ def add_doctor(new_doc: Doctor):
     logging.info(f"New Doctor Added : {new_doc.DoctorID}")
     return {"message": "Doctor added successfully", "doctor": new_doc}
 
-# Update a existing Doctor
+# Update an existing Doctor
 @app.put("/doctors/{doc_id}")
 def update_doctor(doc_id: str, updated_doc: Doctor):
     if doc_id != updated_doc.DoctorID:

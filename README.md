@@ -16,4 +16,6 @@
 - **13 Oct**   : Data Pipeline, ETL Process, Data Preprocessing.
 - **14 Oct**   : Message Queueing using Threading, Azure Queue vs Service Bus
 - **15 Oct**   : Gen AI basic Intro, Types of Gen AI, Agentic AI Intro
-- **16 Oct**   : 
+- **16 Oct**   : Transformers and Vector Embeddings Intro
+- **17 Oct**   : Milestone Project - HealthCare Analytics
+- **21 Oct**   :

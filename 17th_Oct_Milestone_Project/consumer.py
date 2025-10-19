@@ -52,6 +52,23 @@ def run_etl():
     except Exception as e:
         logging.error(f"An unexpected error occurred: {str(e)}")
 
+def run_report():
+    logging.info("Report Generation started.")
+    try:
+        result = subprocess.run(
+            ['python', 'healthcare.py'],
+            capture_output = True,
+            text = True,
+            check = True
+        )
+        logging.info("Report Generation Completed")
+    except subprocess.CalledProcessError as e:
+        logging.error(e.stdout)
+    except FileNotFoundError:
+        logging.error("healthcare.py not found.")
+    except Exception as e:
+        logging.error(f"An unexpected error occurred: {str(e)}")
+
 def callback(ch, method, properties, body):
     try:
         start_time = time.time()
@@ -61,9 +78,12 @@ def callback(ch, method, properties, body):
 
         if add_visit(task):
             run_etl()
+            run_report()
             logging.info(f"ETL Process Finished in {time.time() - start_time} seconds.")
+            logging.info(f"Report Generation Finished in {time.time() - start_time} seconds.")
         else:
             logging.error("ETL Process Failed. Visit cannot be added")
+            logging.error("Report Generation Failed. Visit cannot be added")
 
     except Exception as e:
         logging.error(f"An unexpected error occurred: {str(e)}")

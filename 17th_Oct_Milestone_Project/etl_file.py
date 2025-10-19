@@ -5,7 +5,7 @@ import logging
 logging.basicConfig(
     level = logging.DEBUG,
     filename = 'app.log',
-    format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    format = '%(asctime)s - %(levelname)s - %(message)s'
 )
 
 def process_visits(visits_csv, patients_csv, doctors_csv):
@@ -14,25 +14,22 @@ def process_visits(visits_csv, patients_csv, doctors_csv):
         logging.info("Patients file processed successfully.")
     except FileNotFoundError:
         logging.error("patients.csv file not found.")
-        raise
 
     try:
         doctors = pd.read_csv(doctors_csv)
         logging.info("Doctors file processed successfully.")
     except FileNotFoundError:
         logging.error("doctors.csv file not found.")
-        raise
 
     try:
         visits_df = pd.read_csv(visits_csv)
         logging.info("Visit file processed successfully.")
     except FileNotFoundError:
         logging.error("visits.csv file not found.")
-        raise
 
     if doctors["DoctorID"].isnull().any():
         logging.error("Doctor ID doesn't exist.")
-        raise ValueError("Doctor ID missing required value")
+        raise ValueError("Doctor ID missing")
 
     # Join visits with patients on PatientID == id (assuming patients.id == PatientID)
     df = visits_df.merge(patients, on='PatientID', how='left')
@@ -44,7 +41,7 @@ def process_visits(visits_csv, patients_csv, doctors_csv):
     df['Date'] = pd.to_datetime(df['Date'])
 
     # Add 'Month' column
-    df['Month'] = df['Date'].dt.to_period('M').astype(str)
+    df['Month'] = df['Date'].dt.month_name()
 
     # Calculate FollowUpRequired:
     visit_counts = df.groupby('PatientID')['VisitID'].transform('count')
