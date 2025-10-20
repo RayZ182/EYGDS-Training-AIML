@@ -80,3 +80,7 @@
 2025-10-19 08:42:36,315 - INFO - Report Generation Completed
 2025-10-19 08:42:36,315 - INFO - ETL Process Finished in 5.818007946014404 seconds.
 2025-10-19 08:42:36,315 - INFO - Report Generation Finished in 5.818007946014404 seconds.
+2025-10-20 11:30:55,628 - INFO - Patients file processed successfully.
+2025-10-20 11:30:55,641 - INFO - Doctors file processed successfully.
+2025-10-20 11:30:55,652 - INFO - Visit file processed successfully.
+2025-10-20 11:30:55,666 - INFO - Processed visits saved to process_visits.csv

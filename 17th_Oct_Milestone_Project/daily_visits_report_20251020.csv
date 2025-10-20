@@ -1,0 +1,9 @@
+VisitID,PatientID,DoctorID,Date,Cost,Name_x,Age,Condition,Name_y,Specialization,Month,FollowUpRequired
+V001,P001,D101,2025-10-01,800,Neha,32,Fever,Dr. Patel,General Physician,October,True
+V002,P002,D102,2025-10-02,1200,Arjun,45,Diabetes,Dr. Khan,Endocrinologist,October,False
+V003,P003,D103,2025-10-03,1500,Sophia,28,Hypertension,Dr. Verma,Cardiologist,October,True
+V004,P001,D101,2025-10-05,600,Neha,32,Fever,Dr. Patel,General Physician,October,True
+V005,P004,D104,2025-10-06,1100,Ravi,52,Asthma,Dr. Rao,Pulmonologist,October,False
+V006,P005,D103,2025-10-07,1300,Meena,38,Arthritis,Dr. Verma,Cardiologist,October,False
+V008,P003,D101,2025-10-09,1000,Sophia,28,Hypertension,Dr. Patel,General Physician,October,True
+V009,P003,D101,2025-10-10,500,Sophia,28,Hypertension,Dr. Patel,General Physician,October,True

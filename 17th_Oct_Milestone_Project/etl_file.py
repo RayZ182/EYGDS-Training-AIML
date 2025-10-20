@@ -1,5 +1,6 @@
 import pandas as pd
 import logging
+from datetime import datetime
 
 # Configure logging
 logging.basicConfig(
@@ -53,6 +54,11 @@ def process_visits(visits_csv, patients_csv, doctors_csv):
 
     print("Processed visits saved to 'processed_visits.csv'")
     logging.info(f"Processed visits saved to process_visits.csv")
+
+    # Saving the same for the task scheduler in another file
+    today_str = datetime.now().strftime('%Y%m%d')
+    output_filename = f'daily_visits_report_{today_str}.csv'
+    df.to_csv(output_filename, index=False)
 
 if __name__ == "__main__":
     process_visits('visits.csv', 'patients.csv', 'doctors.csv')
