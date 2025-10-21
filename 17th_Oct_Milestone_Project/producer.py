@@ -17,9 +17,9 @@ try:
     channel.queue_declare(queue="visit_tasks")
 
     task = {
-        "VisitID": "V009",
-        "PatientID": "P003",
-        "DoctorID": "D101",
+        "VisitID": "V010",
+        "PatientID": "P001",
+        "DoctorID": "D102",
         "Date": "2025-10-10",
         "Cost": 500
     }
