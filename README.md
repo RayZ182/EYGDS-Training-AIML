@@ -18,4 +18,4 @@
 - **15 Oct**   : Gen AI basic Intro, Types of Gen AI, Agentic AI Intro
 - **16 Oct**   : Transformers and Vector Embeddings Intro
 - **17 Oct**   : Milestone Project - HealthCare Analytics
-- **21 Oct**   :
+- **21 Oct**   : Prompting, Langchain, Types of Prompting, PromptLayer Intro
