@@ -39,3 +39,7 @@
 2025-10-22 09:00:05,738 - INFO - Doctors file processed successfully.
 2025-10-22 09:00:05,749 - INFO - Visit file processed successfully.
 2025-10-22 09:00:05,765 - INFO - Processed visits saved to process_visits.csv
+2025-10-23 09:00:05,747 - INFO - Patients file processed successfully.
+2025-10-23 09:00:05,758 - INFO - Doctors file processed successfully.
+2025-10-23 09:00:05,768 - INFO - Visit file processed successfully.
+2025-10-23 09:00:05,785 - INFO - Processed visits saved to process_visits.csv
