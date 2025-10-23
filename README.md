@@ -19,3 +19,5 @@
 - **16 Oct**   : Transformers and Vector Embeddings Intro
 - **17 Oct**   : Milestone Project - HealthCare Analytics
 - **21 Oct**   : Prompting, Langchain, Types of Prompting, PromptLayer Intro
+- **22 Oct**   : Vector Database, RAG, Langchain Intro
+- **23 Oct**   : OpenRouter Tutorial, Using LLMs in Projects Intro, Different Deployment Environments
