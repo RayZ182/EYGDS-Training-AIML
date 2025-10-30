@@ -1,32 +1,38 @@
 import os
 from dotenv import load_dotenv
 from crewai import Agent, Task, Crew
-from langchain_openai import ChatOpenAI
 
 # Load your .env file
 load_dotenv()
 
 # Map OpenRouter key to what CrewAI expects
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENROUTER_API_KEY")
-
 os.environ["OPENAI_API_BASE"] = "https://openrouter.ai/api/v1"
-# os.environ["OPENAI_MODEL_NAME"] = "mistralai/mistral-7b-instruct"
-# llm = ChatOpenAI(model="mistralai/mistral-7b-instruct", temperature=0.7)
+os.environ["OPENAI_MODEL"] = "openai/gpt-5-mini"
+
 # --- User Input ---
 topic = input("Enter a topic for research: ")
 
-# --- Define Agents ---
+# --- Define Agents with explicit model ---
+LLM_MODEL = os.environ["OPENAI_MODEL"]
+
 researcher = Agent(
     role="Researcher",
     goal=f"Find information about {topic}",
-    backstory="An AI researcher skilled at gathering reliable and up-to-date information."
+    backstory="An AI researcher skilled at gathering reliable and up-to-date information.",
+    #llm=LLM_MODEL  # Explicitly set model
 )
 
 writer = Agent(
     role="Writer",
     goal=f"Summarize research findings about {topic}",
-    backstory="A writer skilled in creating clear and concise summaries."
+    backstory="A writer skilled in creating clear and concise summaries.",
+    #llm=LLM_MODEL  # Explicitly set model
 )
+
+# --- Print LLM used by agents ---
+print(f"\nLLM used by both agents: {LLM_MODEL}\n")
+print("-" * 50)
 
 # --- Define Tasks ---
 task1 = Task(
@@ -48,7 +54,15 @@ crew = Crew(
     verbose=False
 )
 
+print("Starting research crew...\n")
 result = crew.kickoff()
 
-print("\n--- Final Output ---\n")
+# --- Final Output ---
+print("\n" + "="*60)
+print("FINAL OUTPUT")
+print("="*60)
+print(f"Topic: {topic}")
+print(f"LLM Used: {LLM_MODEL}")
+print("-" * 60)
 print(result)
+print("="*60)
