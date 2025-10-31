@@ -19,7 +19,7 @@ if not api_key:
 # 2. Initialize the Mistral model via OpenRouter
 # ------------------------------------------------------------
 llm = ChatOpenAI(
-    model="mistralai/mistral-7b-instruct:free",
+    model="mistralai/mistral-7b-instruct",
     temperature=0.4,
     max_tokens=256,
     api_key=api_key,

@@ -26,3 +26,4 @@
 - **28 Oct**   : Agentic AI workflow using n8n, Single Agent vs MultiAgent System.
 - **29 Oct**   : Agentic Tool chatbot using Langchain and OpenRouter
 - **30 Oct**   : MCP, Azure AI Foundry Intro. CrewAI Application
+- **31 Oct**   : CrewAI Application - Weather Summarizer & Suggestions, Song Recommender
