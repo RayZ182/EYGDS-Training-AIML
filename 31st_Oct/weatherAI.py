@@ -82,7 +82,7 @@ crew = Crew(
     agents=[weather_summarizer, clothes],
     tasks=[summarize_task, clothes_needed],
     process=Process.sequential,
-    verbose=True,
+    verbose=False,
 )
 
 if __name__ == "__main__":
