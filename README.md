@@ -29,3 +29,4 @@
 - **31 Oct**   : CrewAI Application - Weather Summarizer & Suggestions, Song Recommender
 - **3 Nov**    : Autogen examples, Autogen workflows using Autogen Studio
 - **4 Nov**    : AutogenStudio Workflow - Researcher & Summarizer. Langchain Application - Researcher -> Summarizer -> Notifier
+- **5 Nov**    : Project - Agentic Project Resource Allocator
