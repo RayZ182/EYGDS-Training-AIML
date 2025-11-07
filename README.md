@@ -30,3 +30,5 @@
 - **3 Nov**    : Autogen examples, Autogen workflows using Autogen Studio
 - **4 Nov**    : AutogenStudio Workflow - Researcher & Summarizer. Langchain Application - Researcher -> Summarizer -> Notifier
 - **5 Nov**    : Project - Agentic Project Resource Allocator
+- **6 Nov**    : Project - Agentic Project Resource Allocator (cont.)
+- **7 Nov**    : FastAPI Integration with OpenRouter endpoint, ChatBot using FastAPI
