@@ -33,4 +33,7 @@
 - **6 Nov**    : Project - Agentic Project Resource Allocator (cont.)
 - **7 Nov**    : FastAPI Integration with OpenRouter endpoint, ChatBot using FastAPI
 - **10 Nov**   : Docker Basic Introduction. Internal Project Started
-- **11 Nov**   : Internal Project - Customer Sentiment Analyzer for Businesses and Products.
+- **11 Nov**   : Internal Project - Client Sentiment Analyzer for Businesses and Products.
+- **12 Nov**   : Internal Project - Client Sentiment Analyzer for Businesses and Products.
+- **13 Nov**   : Internal Project - Client Sentiment Analyzer for Businesses and Products.
+- **14 Nov**   : Internal Project - Client Sentiment Analyzer for Businesses and Products.
