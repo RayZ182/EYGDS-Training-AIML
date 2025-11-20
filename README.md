@@ -37,3 +37,6 @@
 - **12 Nov**   : Internal Project - Client Sentiment Analyzer for Businesses and Products.
 - **13 Nov**   : Internal Project - Client Sentiment Analyzer for Businesses and Products.
 - **14 Nov**   : Internal Project - Client Sentiment Analyzer for Businesses and Products.
+- **17 Nov**   : Final Project - Agentic Grocery Store Management
+- **18 Nov**   : Final Project - Agentic Grocery Store Management
+- **19 Nov**   : Final Project - Agentic Grocery Store Management
