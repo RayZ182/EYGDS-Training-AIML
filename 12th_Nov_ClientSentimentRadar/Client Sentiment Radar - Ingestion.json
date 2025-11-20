@@ -1,0 +1,650 @@
+{
+  "name": "Client Sentiment Radar - Ingestion",
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json[\"values\"][0][0]}}",
+              "operation": "isEmpty"
+            }
+          ]
+        }
+      },
+      "name": "IF New Row",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -512,
+        16
+      ],
+      "id": "c254e5d6-83de-45ee-8e8a-a4ade1242ad3"
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "name",
+              "value": "={{ $json.Name }}"
+            },
+            {
+              "name": "rating",
+              "value": "={{ $json.Rating }}"
+            },
+            {
+              "name": "feedback",
+              "value": "={{ $json.Feedback }}"
+            },
+            {
+              "name": "location",
+              "value": "={{ $json.Location }}"
+            },
+            {
+              "name": "timestamp",
+              "value": "={{ $json.Timestamp }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Normalize JSON",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -336,
+        0
+      ],
+      "id": "9bd52a83-9cc4-499d-8a2e-b65f3a849ae8"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "19KYixXl-ki1QOYuIRqe_DnWEauhrJyhh4BBTtcA-l0g",
+          "mode": "list",
+          "cachedResultName": "customer_feedback_radar",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/19KYixXl-ki1QOYuIRqe_DnWEauhrJyhh4BBTtcA-l0g/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 144193947,
+          "mode": "list",
+          "cachedResultName": "Form Responses 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/19KYixXl-ki1QOYuIRqe_DnWEauhrJyhh4BBTtcA-l0g/edit#gid=144193947"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -672,
+        16
+      ],
+      "id": "530bec3b-9621-40bc-a04a-95240407cffc",
+      "name": "Google Sheets Trigger",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "x0CerGFV4n8vVAle",
+          "name": "Google Sheets Trigger account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "mistralai/mistral-7b-instruct",
+        "options": {
+          "maxTokens": 200,
+          "temperature": 0.1
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -144,
+        48
+      ],
+      "id": "f8aadf54-a345-47f8-a90c-84a5d7a24c77",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "YFKQJIwYwTWZe2WW",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "analysis",
+              "value": "={{ JSON.parse($json[\"text\"].replace(/```json|```/g, '').trim()) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Parse clean JSON",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        176,
+        16
+      ],
+      "id": "ddeb3a5f-e536-4eae-8c59-06eb7f917c1c"
+    },
+    {
+      "parameters": {
+        "model": "mistralai/mistral-7b-instruct",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        608,
+        224
+      ],
+      "id": "2908121e-9a39-4123-b1a1-fdde993012c5",
+      "name": "OpenRouter Chat Model2",
+      "credentials": {
+        "openRouterApi": {
+          "id": "YFKQJIwYwTWZe2WW",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json[\"feedback_text\"] }}\n\nGenerate 3 summaries.",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "You are a customer success AI. Analyze the last 10 feedbacks and return ONLY a valid JSON with:  - positive_summary: 1-2 sentences on what customers loved and in which location - negative_summary: 1-2 sentences on top complaints and in which location- churn_risk_overview: 1-2 sentences: avg risk, # of High-risk (>75), key churn drivers, 1 urgent action and in which location is it needed  Return ONLY JSON. No markdown. No extra text."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        608,
+        32
+      ],
+      "id": "2da5f2bc-9d67-4d71-a95c-4c5aa33b5e1e",
+      "name": "AI Summary"
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "analysis",
+              "value": "={{ JSON.parse($json[\"text\"].replace(/```json|```/g, '').trim()) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Parse clean JSON1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        816,
+        224
+      ],
+      "id": "7f963e9a-3a98-4e97-b638-f29d3a7de99a"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Review: {{$json[\"feedback\"]}}\nRating: {{$json[\"rating\"]}}\nLocation: {{$json[\"location\"]}}\nClient: {{$json[\"name\"]}}\n\nGenerate full JSON with ai_summary.",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "You are a customer success AI. Analyze the review and return ONLY a valid JSON object with:  - sentiment: Positive / Neutral / Negative - confidence: 0.00 to 1.00 - top_complaint: 1 short phrase if Negative, else null - churn_risk: 0 to 100 - risk_level: Low / Medium / High - location : check the location of the client -ai_summary: 1-2 sentence business summary with % sentiment, top issues, high-risk clients, location trends, and 1 actionable advice  Rules: - Rating 1-2 + Negative → churn_risk ≥ 75 - Use natural language in ai_summary - Return ONLY JSON. No code blocks. No extra text.  Example: {\"sentiment\":\"Negative\",\"confidence\":0.95,\"top_complaint\":\"cold food\",\"churn_risk\":88,\"risk_level\":\"High\",\"ai_summary\":\"50% Negative feedback due to cold food. 2 High-risk clients in Delhi. Fix food temperature now.\"}"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        -144,
+        -128
+      ],
+      "id": "5f8cfc49-7f43-40c8-bf81-b602386fceb2",
+      "name": "Sentiment & Risk Analyzer"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "19KYixXl-ki1QOYuIRqe_DnWEauhrJyhh4BBTtcA-l0g",
+          "mode": "list",
+          "cachedResultName": "customer_feedback_radar",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/19KYixXl-ki1QOYuIRqe_DnWEauhrJyhh4BBTtcA-l0g/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1767595696,
+          "mode": "list",
+          "cachedResultName": "Processed",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/19KYixXl-ki1QOYuIRqe_DnWEauhrJyhh4BBTtcA-l0g/edit#gid=1767595696"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $('Normalize JSON').item.json.name }}",
+            "Sentiment": "={{ $json.analysis.sentiment }}",
+            "Confidence": "={{ $json.analysis.confidence }}",
+            "Top_Complaint": "={{ $json.analysis.top_complaint }}",
+            "Churn_risk": "={{ $json.analysis.churn_risk }}",
+            "Risk_level": "={{ $json.analysis.risk_level }}",
+            "Rating": "={{ $('Normalize JSON').item.json.rating }}",
+            "Feedback": "={{ $('Normalize JSON').item.json.feedback }}",
+            "Timestamp": "={{ $('Normalize JSON').item.json.timestamp }}",
+            "ai_summary": "={{ $json.analysis.ai_summary }}",
+            "location": "={{ $json.analysis.location }}"
+          },
+          "matchingColumns": [
+            "Name"
+          ],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Rating",
+              "displayName": "Rating",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Feedback",
+              "displayName": "Feedback",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Sentiment",
+              "displayName": "Sentiment",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Confidence",
+              "displayName": "Confidence",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Top_Complaint",
+              "displayName": "Top_Complaint",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Churn_risk",
+              "displayName": "Churn_risk",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Risk_level",
+              "displayName": "Risk_level",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ai_summary",
+              "displayName": "ai_summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "location",
+              "displayName": "location",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        384,
+        16
+      ],
+      "id": "4b1cb053-b030-42d1-89b3-17b4b2a9838a",
+      "name": "Append to Processed",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "6OMsag5Y9xuCQ4z4",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.slice(-10);"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        240,
+        224
+      ],
+      "id": "c471377f-cca8-4825-b934-e8e298a6a7f8",
+      "name": "Take last 10 records"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Convert last 10 feedbacks to readable text\nconst feedbacks = items.map(item => {\n  const data = item.json;\n  return `Name: ${data.Name}\nRating: ${data.Rating}\nReview: ${data.Feedback}\nSentiment: ${data.Sentiment}\nChurn Risk: ${data.Churn_risk}\nLocation: ${data.location}`;\n}).join('\\n\\n---\\n\\n');\n\nreturn [{\n  json: {\n    feedback_text: feedbacks\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        416,
+        224
+      ],
+      "id": "c8fc47d9-01b1-4fb3-9eae-9a396fafe117",
+      "name": "Converts Feedbacks to Text"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "19KYixXl-ki1QOYuIRqe_DnWEauhrJyhh4BBTtcA-l0g",
+          "mode": "list",
+          "cachedResultName": "customer_feedback_radar",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/19KYixXl-ki1QOYuIRqe_DnWEauhrJyhh4BBTtcA-l0g/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1697643033,
+          "mode": "list",
+          "cachedResultName": "AI_Summary",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/19KYixXl-ki1QOYuIRqe_DnWEauhrJyhh4BBTtcA-l0g/edit#gid=1697643033"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "positve_summary": "={{ $json.analysis.positive_summary }}",
+            "negative_summary": "={{ $json.analysis.negative_summary }}",
+            "chrun_risk_overview": "={{ $json.analysis.churn_risk_overview }}"
+          },
+          "matchingColumns": [
+            "positve_summary"
+          ],
+          "schema": [
+            {
+              "id": "positve_summary",
+              "displayName": "positve_summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "negative_summary",
+              "displayName": "negative_summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "chrun_risk_overview",
+              "displayName": "chrun_risk_overview",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1024,
+        224
+      ],
+      "id": "a7dbac87-0faa-4b7d-a4a2-372eb414c062",
+      "name": "Append to AI Summary",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "6OMsag5Y9xuCQ4z4",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "IF New Row": {
+      "main": [
+        [
+          {
+            "node": "Normalize JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize JSON": {
+      "main": [
+        [
+          {
+            "node": "Sentiment & Risk Analyzer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "IF New Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Sentiment & Risk Analyzer",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse clean JSON": {
+      "main": [
+        [
+          {
+            "node": "Append to Processed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Summary",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Summary": {
+      "main": [
+        [
+          {
+            "node": "Parse clean JSON1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse clean JSON1": {
+      "main": [
+        [
+          {
+            "node": "Append to AI Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sentiment & Risk Analyzer": {
+      "main": [
+        [
+          {
+            "node": "Parse clean JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append to Processed": {
+      "main": [
+        [
+          {
+            "node": "Take last 10 records",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Take last 10 records": {
+      "main": [
+        [
+          {
+            "node": "Converts Feedbacks to Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Converts Feedbacks to Text": {
+      "main": [
+        [
+          {
+            "node": "AI Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "3c9f801d-0d5a-4932-985f-0204ff501c22",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "c93fbb5abea7e03bd1a8f3eee2cb2d710d1caed20390c44cb3ae086fd23895a9"
+  },
+  "id": "J5946n61bq8wP3yY",
+  "tags": []
+}
